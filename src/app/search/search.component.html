@@ -1,0 +1,84 @@
+<!-- Search form -->
+<div class="search-container" align="center">
+  <form class="form-inline justify-content-center">
+    <input class="form-control search" 
+      type="text" placeholder="Search an Id"
+      aria-label="Search" [formControl]="searchInput">
+      <button class="btn btn-primary btn-rounded"  (click)="search()">Search</button>
+  </form>
+</div>
+
+<!-- Error -->
+<div *ngIf="isError">
+  <div class="card error text-center">
+    <h1>{{ errorMessage }}</h1>
+  </div>
+</div>
+
+<!-- No Error -->
+<div *ngIf="!isError">
+
+  <!-- 1 Data -->
+  <div *ngIf="isData">
+    <div *ngIf="!data" class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <div *ngIf="data">
+      <div class="card text-center">
+          <div class="card-header">{{ data.id }}</div>
+          <div class="card-body">
+              <h4 class="card-title">{{ data.title }}</h4>
+              <p class="card-text">{{ data.body }}</p>
+          </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- All Data -->
+  <div *ngIf="isDatas">
+    <div *ngIf="!datas" class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <div *ngIf="datas">
+      <div *ngFor="let data of datas">
+
+        <div class="card text-center">
+            <div class="card-header"> {{ data.id }}</div>
+            <div class="card-body">
+                <h4 class="card-title">{{ data.title }}</h4>
+                <p class="card-text">{{ data.body }}</p>
+            </div>
+        </div>
+          
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Selected Data -->
+  <div *ngIf="isComplexData">
+      <div *ngIf="!dataTemp" class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      <div *ngIf="dataTemp">
+        <div *ngFor="let data of dataTemp">
+
+            <div class="card text-center">
+                <div class="card-header">
+                    {{ data.id }}
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ data.title }}</h4>
+                    <p class="card-text">{{ data.body }}</p>
+                </div>
+            </div>
+
+        </div>
+      </div>
+  </div>
+
+</div>
